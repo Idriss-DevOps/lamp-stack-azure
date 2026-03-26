@@ -1,0 +1,19 @@
+# ============================================================
+# render.yaml – Render Blueprint
+# Defines the web service so Render auto-configures everything
+# Docs: https://render.com/docs/blueprint-spec
+# ============================================================
+
+services:
+  - type: web
+    name: lamp-stack-azure
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free                    # Free tier
+    region: oregon                # or: frankfurt, ohio, singapore
+    branch: main
+
+    # Render sets PORT automatically — entrypoint script picks it up
+    envVars:
+      - key: PHP_ENV
+        value: production
